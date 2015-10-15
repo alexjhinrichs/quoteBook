@@ -1,0 +1,47 @@
+<html data-ng-app="quoteBook">
+	<head>
+		<title>QuoteBook Project</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body data-ng-controller="mainCtrl">
+		<div data-ng-repeat="quote in quotes | filter: filterByName">
+			<h3>{{ quote.text }}</h3>
+				<pre>	--{{ quote.author }}</pre>
+		</div>
+
+		
+			<div>
+
+				<button data-ng-hide="input === 1" data-ng-click="input = 1">I want to add a quote</button>
+
+				<button data-ng-hide="input === 2" data-ng-click="input = 2">I want to remove a quote</button>
+
+				<button data-ng-hide="input === 3" data-ng-click="input = 3">I want to filter by Authors name</button>
+
+			</div>
+		<div data-ng-init="input = 1">
+			<div data-ng-show="input === 1">
+				<input placeholder="New quote" data-ng-model="addText">
+				<input placeholder="New author" data-ng-model="addAuthor">
+				<button data-ng-click="add({text: addText, author: addAuthor})">Add Quote</button>
+			</div>
+
+			<div data-ng-show="input === 2">
+				<input type="text" placeholder="Quote to remove" data-ng-model="removeText">
+				<button data-ng-click="remove(removeText)">Remove Quote</button>
+			</div>
+
+
+			<div data-ng-show="input === 3">
+				<input placeholder="Input Author's name" data-ng-model="filterByName.author">
+				Filter by authors name
+			</div>
+
+		</div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/dataService.js"></script>
+		<script src="js/mainCtrl.js"></script>
+	</body>
+</html>
